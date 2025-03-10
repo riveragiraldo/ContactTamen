@@ -1,7 +1,7 @@
 :root {
     --color-unal-verde: #2E7D32;        /* Verde UNAL */
     --color-unal-verde-oscuro: #1B5E20; /* Verde oscuro UNAL */
-    --color-unal-gris-claro: #F8F9FA;   /* Gris claro */
+    --color-unal-gris-claro: #fdf4f4;   /* Gris claro */
     --color-unal-gris-oscuro: #6C757D;  /* Gris oscuro */
     --color-unal-blanco: #FFFFFF;       /* Blanco */
     --color-error: #DC3545;             /* Rojo para errores */
