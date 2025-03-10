@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Registrar Solicitud - Taller de Alistamiento - Dirección de Laboratorios</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 class="text-center mb-3">Registrar Solicitud - Datos de Contacto de Laboratorios</h2>
+
+        <p class="text-center text-muted d-none d-md-block">
+            Formulario para registro de solicitudes de intervención de equipos de laboratorio.
+        </p>
+
+        <p class="text-center text-muted">
+            <strong>Nota:</strong> Las preguntas marcadas con <span class="text-danger">*</span> son de diligenciamiento obligatorio.
+        </p>
+
+        <form id="formSolicitud">
+
+            <!-- Sección 1: Datos del Laboratorio -->
+            <fieldset class="border p-2 rounded mb-3">
+                <legend class="w-auto px-2">1. Datos del Laboratorio</legend>
+
+                <div class="mb-2">
+                    <label for="laboratorioSelect">1.1 Selecciona un laboratorio o dependencia: <span class="text-danger">*</span></label>
+                    <select id="laboratorioSelect" class="form-control" onchange="mostrarDatos()" required>
+                        <option value="">-- Selecciona --</option>
+                        <? for (var i = 0; i < datosLaboratorios.length; i++) { ?>
+                        <option value="<?= datosLaboratorios[i].nombreLaboratorio ?>">
+                            <?= datosLaboratorios[i].nombreLaboratorio ?>
+                        </option>
+                        <? } ?>
+                        <option value="OTRA DEPENDENCIA">OTRA DEPENDENCIA</option>
+                    </select>
+                </div>
+
+                <!-- Campo oculto para "Otra Dependencia" -->
+                <div id="otraDependenciaCampo" style="display: none; margin-top: 10px;">
+                    <label for="otraDependencia">1.2 Si seleccionas otra dependencia, escribe cuál: <span class="text-danger">*</span></label>
+                    <input type="text" id="otraDependencia" class="form-control" placeholder="Ingresa el nombre de la dependencia...">
+                </div>
+
+            </fieldset>
+
+            <!-- Sección 2: Datos de Contacto -->
+            <fieldset class="border p-2 rounded mb-3">
+                <legend class="w-auto px-2">2. Datos de Contacto</legend>
+
+                <p class="text-muted">
+                    Diligencia o modifica la información de contacto.
+                </p>
+
+                <div class="mb-2">
+                    <label for="personaContacto">2.1 Persona de contacto: <span class="text-danger">*</span></label>
+                    <input type="text" id="personaContacto" class="form-control" placeholder="Nombre completo de la persona de contacto" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="correoContacto">2.2 Correo electrónico: <span class="text-danger">*</span></label>
+                    <input type="email" id="correoContacto" class="form-control" placeholder="usuario@unal.edu.co" pattern="[a-zA-Z0-9._%+-]+@unal\.edu\.co" title="Debe ser un correo válido de la UNAL (dominio @unal.edu.co)" required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="telefonoContacto">2.3 Teléfono de contacto: <span class="text-danger">*</span></label>
+                    <input type="tel" id="telefonoContacto" class="form-control" placeholder="Número de contacto (10 dígitos)" maxlength="10" pattern="[0-9]{10}" title="Ingresa un número de 10 dígitos" required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="ubicacionContacto">2.4 Ubicación: <span class="text-danger">*</span></label>
+                    <input type="text" id="ubicacionContacto" class="form-control" placeholder="Ejemplo: Edificio XX, Piso X, Oficina XXX" maxlength="150" required>
+                </div>
+
+            </fieldset>
+
+            <!-- Sección 3: Datos de (los) equipo(s) -->
+            <fieldset class="border p-2 rounded mb-3">
+                <legend class="w-auto px-2">3. Datos de (los) equipo(s)</legend>
+
+                <p class="text-muted">
+                    A continuación diligencia la información del (los) equipo(s) que requieren intervención:
+                </p>
+
+                <!-- Placa -->
+                <div class="mb-2">
+                    <label for="placaEquipo">3.1 Placa:</label>
+                    <input type="text" id="placaEquipo" class="form-control" placeholder="Número de placa del equipo (opcional)" maxlength="10">
+                </div>
+
+                <!-- Equipo -->
+                <div class="mb-2">
+                    <label for="nombreEquipo">3.2 Equipo:</label>
+                    <input type="text" id="nombreEquipo" class="form-control" placeholder="Nombre o descripción del equipo (opcional)" maxlength="50">
+                </div>
+
+                <!-- Tipo de intervención -->
+                <div class="mb-2">
+                    <label for="tipoIntervencion">3.3 Tipo de intervención: <span class="text-danger">*</span></label>
+                    <select id="tipoIntervencion" class="form-control" required onchange="validarTipoIntervencion()">
+                        <option value="">-- Selecciona --</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                        <option value="Reparación">Reparación</option>
+                        <option value="Asesoría">Asesoría</option>
+                        <option value="Otra">Otra</option>
+                    </select>
+                </div>
+
+                <!-- Campo para especificar si es "Otra" -->
+                <div id="campoOtraIntervencion" class="mb-2" style="display: none;">
+                    <label for="otraIntervencion">3.4 ¿Cuál?: <span class="text-danger">*</span></label>
+                    <input type="text" id="otraIntervencion" class="form-control" placeholder="Especifica el tipo de intervención" maxlength="50">
+                </div>
+
+                <!-- Solicitud -->
+                <div class="mb-2">
+                    <label for="solicitudEquipo">3.5 Descripción de la solicitud o síntomas: <span class="text-danger">*</span></label>
+                    <textarea id="solicitudEquipo" class="form-control" placeholder="Describe los síntomas del equipo o la solicitud puntual" maxlength="500" rows="4" required></textarea>
+                </div>
+
+                <legend class="w-auto px-2">3.6 Evidencias (opcional)</legend>
+
+                <p class="text-muted">
+                    Puedes adjuntar hasta 3 archivos: imágenes (.jpg, .png), videos (.mp4) o documentos (.doc, .docx, .pdf). Máximo 5MB por archivo.
+                </p>
+
+                <!-- Archivo 1 -->
+                <div class="mb-2">
+                    <label for="archivoEvidencia1" class="form-label">Archivo 1:</label>
+                    <input type="file" id="archivoEvidencia1" class="form-control" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx, .mp4">
+                </div>
+
+                <!-- Archivo 2 (oculto inicialmente) -->
+                <div class="mb-2" id="contenedorArchivo2" style="display: none;">
+                    <label for="archivoEvidencia2" class="form-label">Archivo 2:</label>
+                    <input type="file" id="archivoEvidencia2" class="form-control" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx, .mp4">
+                </div>
+
+                <!-- Archivo 3 (oculto inicialmente) -->
+                <div class="mb-2" id="contenedorArchivo3" style="display: none;">
+                    <label for="archivoEvidencia3" class="form-label">Archivo 3:</label>
+                    <input type="file" id="archivoEvidencia3" class="form-control" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx, .mp4">
+                </div>
+
+            </fieldset>
+
+            <!-- Sección 4: Validaciones -->
+            <fieldset class="border p-2 rounded mb-3">
+                <legend class="w-auto px-2">4. Validaciones</legend>
+
+                <p class="text-muted">
+                    Para continuar, es necesario que aceptes nuestra Política de Tratamiento de Datos Personales:
+                </p>
+
+                <!-- Aceptación de Tratamiento de Datos Personales -->
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="aceptacionDatos" required>
+                        <label class="form-check-label" for="aceptacionDatos">
+                            4.1 He leído, entendido y acepto los términos descritos en la
+                            <a href="https://drive.google.com/file/d/1Wx9-EAexpj1PunRaeplfB1eYObQ_G192/view?usp=sharing" target="_blank">
+                                Política de Tratamiento de Datos Personales
+                            </a>
+                            de la Dirección de Laboratorios a cargo del Taller de Alistamiento, de acuerdo con la Ley 1581 de 2012 de Protección de Datos Personales. <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div id="errorAceptacionDatos" class="text-danger mt-1" style="display: none;">
+                        Debes aceptar la Política de Tratamiento de Datos Personales para continuar.
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Botones centrados -->
+            <div class="d-flex justify-content-center mt-3">
+                <button type="reset" class="btn btn-secondary me-2">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Registrar Solicitud</button>
+            </div>
+        </form>
+
+    </div>
+    <script src="funciones.js"></script>
+</body>
+
+</html>
