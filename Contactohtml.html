@@ -26,11 +26,11 @@
         <form id="formSolicitud">
 
             <!-- Sección 1: Datos del Laboratorio -->
-            <fieldset class="border p-2 rounded mb-3">
+            <fieldset class="border p-3 rounded mb-3">
                 <legend class="w-auto px-2">1. Datos del Laboratorio</legend>
 
-                <div class="mb-2">
-                    <label for="laboratorioSelect">1.1 Selecciona un laboratorio o dependencia: <span class="text-danger">*</span></label>
+                <div class="mb-3">
+                    <label for="laboratorioSelect" class="form-label">1.1 Selecciona un laboratorio o dependencia: <span class="text-danger">*</span></label>
                     <select id="laboratorioSelect" class="form-control" onchange="mostrarDatos()" required>
                         <option value="">-- Selecciona --</option>
                         <? for (var i = 0; i < datosLaboratorios.length; i++) { ?>
@@ -43,45 +43,45 @@
                 </div>
 
                 <!-- Campo oculto para "Otra Dependencia" -->
-                <div id="otraDependenciaCampo" style="display: none; margin-top: 10px;">
-                    <label for="otraDependencia">1.2 Si seleccionas otra dependencia, escribe cuál: <span class="text-danger">*</span></label>
+                <div id="otraDependenciaCampo" class="mb-3" style="display: none;">
+                    <label for="otraDependencia" class="form-label">1.2 Si seleccionas otra dependencia, escribe cuál: <span class="text-danger">*</span></label>
                     <input type="text" id="otraDependencia" class="form-control" placeholder="Ingresa el nombre de la dependencia...">
                 </div>
 
             </fieldset>
 
             <!-- Sección 2: Datos de Contacto -->
-            <fieldset class="border p-2 rounded mb-3">
+            <fieldset class="border p-3 rounded mb-3">
                 <legend class="w-auto px-2">2. Datos de Contacto</legend>
 
                 <p class="text-muted">
                     Diligencia o modifica la información de contacto.
                 </p>
 
-                <div class="mb-2">
-                    <label for="personaContacto">2.1 Persona de contacto: <span class="text-danger">*</span></label>
+                <div class="mb-3">
+                    <label for="personaContacto" class="form-label">2.1 Persona de contacto: <span class="text-danger">*</span></label>
                     <input type="text" id="personaContacto" class="form-control" placeholder="Nombre completo de la persona de contacto" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required>
                 </div>
 
-                <div class="mb-2">
-                    <label for="correoContacto">2.2 Correo electrónico: <span class="text-danger">*</span></label>
+                <div class="mb-3">
+                    <label for="correoContacto" class="form-label">2.2 Correo electrónico: <span class="text-danger">*</span></label>
                     <input type="email" id="correoContacto" class="form-control" placeholder="usuario@unal.edu.co" pattern="[a-zA-Z0-9._%+-]+@unal\.edu\.co" title="Debe ser un correo válido de la UNAL (dominio @unal.edu.co)" required>
                 </div>
 
-                <div class="mb-2">
-                    <label for="telefonoContacto">2.3 Teléfono de contacto: <span class="text-danger">*</span></label>
+                <div class="mb-3">
+                    <label for="telefonoContacto" class="form-label">2.3 Teléfono de contacto: <span class="text-danger">*</span></label>
                     <input type="tel" id="telefonoContacto" class="form-control" placeholder="Número de contacto (10 dígitos)" maxlength="10" pattern="[0-9]{10}" title="Ingresa un número de 10 dígitos" required>
                 </div>
 
-                <div class="mb-2">
-                    <label for="ubicacionContacto">2.4 Ubicación: <span class="text-danger">*</span></label>
+                <div class="mb-3">
+                    <label for="ubicacionContacto" class="form-label">2.4 Ubicación: <span class="text-danger">*</span></label>
                     <input type="text" id="ubicacionContacto" class="form-control" placeholder="Ejemplo: Edificio XX, Piso X, Oficina XXX" maxlength="150" required>
                 </div>
 
             </fieldset>
 
             <!-- Sección 3: Datos de (los) equipo(s) -->
-            <fieldset class="border p-2 rounded mb-3">
+            <fieldset class="border p-3 rounded mb-3">
                 <legend class="w-auto px-2">3. Datos de (los) equipo(s)</legend>
 
                 <p class="text-muted">
@@ -89,20 +89,20 @@
                 </p>
 
                 <!-- Placa -->
-                <div class="mb-2">
-                    <label for="placaEquipo">3.1 Placa:</label>
+                <div class="mb-3">
+                    <label for="placaEquipo" class="form-label">3.1 Placa:</label>
                     <input type="text" id="placaEquipo" class="form-control" placeholder="Número de placa del equipo (opcional)" maxlength="10">
                 </div>
 
                 <!-- Equipo -->
-                <div class="mb-2">
-                    <label for="nombreEquipo">3.2 Equipo:</label>
+                <div class="mb-3">
+                    <label for="nombreEquipo" class="form-label">3.2 Equipo:</label>
                     <input type="text" id="nombreEquipo" class="form-control" placeholder="Nombre o descripción del equipo (opcional)" maxlength="50">
                 </div>
 
                 <!-- Tipo de intervención -->
-                <div class="mb-2">
-                    <label for="tipoIntervencion">3.3 Tipo de intervención: <span class="text-danger">*</span></label>
+                <div class="mb-3">
+                    <label for="tipoIntervencion" class="form-label">3.3 Tipo de intervención: <span class="text-danger">*</span></label>
                     <select id="tipoIntervencion" class="form-control" required onchange="validarTipoIntervencion()">
                         <option value="">-- Selecciona --</option>
                         <option value="Mantenimiento">Mantenimiento</option>
@@ -113,14 +113,14 @@
                 </div>
 
                 <!-- Campo para especificar si es "Otra" -->
-                <div id="campoOtraIntervencion" class="mb-2" style="display: none;">
-                    <label for="otraIntervencion">3.4 ¿Cuál?: <span class="text-danger">*</span></label>
+                <div id="campoOtraIntervencion" class="mb-3" style="display: none;">
+                    <label for="otraIntervencion" class="form-label">3.4 ¿Cuál?: <span class="text-danger">*</span></label>
                     <input type="text" id="otraIntervencion" class="form-control" placeholder="Especifica el tipo de intervención" maxlength="50">
                 </div>
 
                 <!-- Solicitud -->
-                <div class="mb-2">
-                    <label for="solicitudEquipo">3.5 Descripción de la solicitud o síntomas: <span class="text-danger">*</span></label>
+                <div class="mb-3">
+                    <label for="solicitudEquipo" class="form-label">3.5 Descripción de la solicitud o síntomas: <span class="text-danger">*</span></label>
                     <textarea id="solicitudEquipo" class="form-control" placeholder="Describe los síntomas del equipo o la solicitud puntual" maxlength="500" rows="4" required></textarea>
                 </div>
 
@@ -131,19 +131,19 @@
                 </p>
 
                 <!-- Archivo 1 -->
-                <div class="mb-2">
+                <div class="mb-3">
                     <label for="archivoEvidencia1" class="form-label">Archivo 1:</label>
                     <input type="file" id="archivoEvidencia1" class="form-control" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx, .mp4">
                 </div>
 
                 <!-- Archivo 2 (oculto inicialmente) -->
-                <div class="mb-2" id="contenedorArchivo2" style="display: none;">
+                <div class="mb-3" id="contenedorArchivo2" style="display: none;">
                     <label for="archivoEvidencia2" class="form-label">Archivo 2:</label>
                     <input type="file" id="archivoEvidencia2" class="form-control" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx, .mp4">
                 </div>
 
                 <!-- Archivo 3 (oculto inicialmente) -->
-                <div class="mb-2" id="contenedorArchivo3" style="display: none;">
+                <div class="mb-3" id="contenedorArchivo3" style="display: none;">
                     <label for="archivoEvidencia3" class="form-label">Archivo 3:</label>
                     <input type="file" id="archivoEvidencia3" class="form-control" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx, .mp4">
                 </div>
@@ -151,7 +151,7 @@
             </fieldset>
 
             <!-- Sección 4: Validaciones -->
-            <fieldset class="border p-2 rounded mb-3">
+            <fieldset class="border p-3 rounded mb-3">
                 <legend class="w-auto px-2">4. Validaciones</legend>
 
                 <p class="text-muted">
@@ -159,7 +159,7 @@
                 </p>
 
                 <!-- Aceptación de Tratamiento de Datos Personales -->
-                <div class="mb-2">
+                <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="aceptacionDatos" required>
                         <label class="form-check-label" for="aceptacionDatos">
