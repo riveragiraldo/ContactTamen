@@ -1,0 +1,167 @@
+:root {
+    --color-unal-verde: #2E7D32;        /* Verde UNAL */
+    --color-unal-verde-oscuro: #1B5E20; /* Verde oscuro UNAL */
+    --color-unal-gris-claro: #F8F9FA;   /* Gris claro */
+    --color-unal-gris-oscuro: #6C757D;  /* Gris oscuro */
+    --color-unal-blanco: #FFFFFF;       /* Blanco */
+    --color-error: #DC3545;             /* Rojo para errores */
+    --color-texto: #333333;             /* Color de texto principal */
+    --color-borde: #CCCCCC;             /* Color de borde para campos */
+    --color-borde-focus: #2E7D32;       /* Color de borde al enfocar */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: var(--color-unal-gris-claro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: 16px; /* Tamaño de fuente base */
+}
+
+.container {
+    background-color: var(--color-unal-blanco);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    border: 4px solid var(--color-unal-verde);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    color: var(--color-unal-verde-oscuro);
+    font-weight: bold;
+    font-size: 1.5rem; /* Tamaño de fuente para títulos */
+}
+
+legend {
+    font-weight: bold;
+    color: var(--color-unal-verde);
+    border-bottom: 2px solid var(--color-unal-verde-oscuro);
+    padding-bottom: 5px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--color-texto);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 1rem; /* Tamaño de fuente para etiquetas */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--color-texto);
+    background-color: var(--color-unal-blanco);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem; /* Tamaño de fuente para campos */
+    padding: 8px; /* Padding reducido para móviles */
+}
+
+/* Media Queries para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Reducir el tamaño de fuente en móviles */
+    }
+
+    .container {
+        padding: 15px; /* Reducir el padding en móviles */
+        border-radius: 8px; /* Bordes más pequeños */
+    }
+
+    h2 {
+        font-size: 1.25rem; /* Título más pequeño en móviles */
+    }
+
+    label {
+        font-size: 0.9rem; /* Etiquetas más pequeñas */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+        font-size: 0.9rem; /* Campos más pequeños */
+        padding: 6px; /* Padding reducido */
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 0.9rem; /* Botones más pequeños */
+        padding: 8px 16px; /* Padding ajustado */
+    }
+
+    fieldset {
+        padding: 10px; /* Reducir el padding en fieldset */
+    }
+
+    .text-muted {
+        font-size: 0.8rem; /* Texto secundario más pequeño */
+    }
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-borde-focus);
+    box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+    outline: none;
+}
+
+::placeholder {
+    color: var(--color-unal-gris-oscuro);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+fieldset {
+    border: 2px solid var(--color-unal-verde-oscuro) !important;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: var(--color-unal-verde);
+    border-color: var(--color-unal-verde-oscuro);
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-unal-verde-oscuro);
+    border-color: var(--color-unal-verde-oscuro);
+}
+
+.btn-secondary {
+    background-color: var(--color-unal-gris-oscuro);
+    border-color: var(--color-unal-gris-oscuro);
+    font-weight: bold;
+}
+
+.btn-secondary:hover {
+    background-color: #495057;
+    border-color: #495057;
+}
+
+.text-danger {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
